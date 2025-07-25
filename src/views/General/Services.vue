@@ -183,7 +183,7 @@
             <div class="fw-bold section-title fs-3">✅ Why Choose PORTREC?</div>
             <!-- <div></div> -->
             <ul>
-              <li>UK-wide and global recruitment capability</li>
+              <li>Nigeria-wide and global recruitment capability</li>
               <li>Sector-specialist consultants</li>
               <li>Fully compliant and audit-ready processes</li>
               <li>Rapid turnaround for urgent staffing needs</li>
