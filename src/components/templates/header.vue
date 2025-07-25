@@ -133,9 +133,18 @@ function goToTalentPage(ref: number, tag: string) {
 <style scoped>
 .navbar-nav .nav-link.active,
 .navbar-nav .nav-link.show {
-  color: var(--theme-color);
+  color: var(--theme-color) !important;
   /* font-weight: bolder; */
-  /* border-bottom: 1px solid var(--theme-color); */
+  border-bottom: 1px solid var(--theme-color) !important;
+}
+
+.navbar-nav .nav-link {
+  transition: all ease-in-out 0.4s;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #000 !important;
+  transform: translateY(-5px);
 }
 
 .dropdown-toggle::after {
