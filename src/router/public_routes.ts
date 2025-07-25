@@ -12,6 +12,11 @@ export default [
         component: () => import(/* webpackChunkName: "general" */  '../views/General/About.vue')
     },
     {
+        path: '/our-services',
+        name: 'Our Services',
+        component: () => import(/* webpackChunkName: "general" */  '../views/General/Services.vue')
+    },
+    {
         path: '/search-talent/:industry_id?',
         name: 'Search Talent',
         component: () => import(/* webpackChunkName: "talent" */  '../views/General/SearchTalent.vue')
