@@ -442,25 +442,42 @@
                                     </div>
                                 </div>
                                 <hr>
-                                <div class="row g-3 align-items-center">
+                                <div v-if="isJobURLOrEmail == 'url'" class="row g-3 align-items-center">
                                     <div class="col-md-5">
-                                        <strong>Job URL</strong>
-                                        <div class="text-muted small">
-                                            Enter job Url (if any)
-                                            <div v-if="form.job_url" class="text-success fw-bolder">
-                                                <!-- <i class="bi bi-check-circle-fill small"></i> -->
-                                                Job seekers will apply externally through this link instead.
-                                            </div>
+                                        <strong>External URL (optional)</strong>
+                                        <div class="text-warning-emphasis fw-bolde small">
+                                            Job seekers should apply externally via this link instead.
                                         </div>
                                     </div>
                                     <div class="col-md-7">
-                                        <input type="text" placeholder="optional" class="form-control"
+                                        <input type="text" placeholder="https://job-apply.com" class="form-control"
                                             v-model="form.job_url">
+                                        <span @click="swicthJobURLOrEmail"
+                                            class="cursor-pointer theme-color fw-bolder small">
+                                            Enter email instead?
+                                        </span>
                                     </div>
                                 </div>
 
+                                <div v-if="isJobURLOrEmail == 'email'" class="row g-3 align-items-center">
+                                    <div class="col-md-5">
+                                        <strong>Job Email (optional)</strong>
+                                        <div class="text-warning-emphasis fw-bolde small">
+                                            Job seekers will send emails directly to this address.
+                                        </div>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <input type="text" placeholder="applyjob@gmail.com" class="form-control"
+                                            v-model="form.job_email">
+                                        <span @click="swicthJobURLOrEmail"
+                                            class="cursor-pointer theme-color fw-bolder small">
+                                            Enter Job URL instead?
+                                        </span>
 
+                                    </div>
+                                </div>
                             </div>
+
                             <div v-if="jobPosting.stage == 3">
                                 <div>
                                     <strong>Basic Information</strong>
@@ -562,7 +579,7 @@ import '@vueup/vue-quill/dist/vue-quill.snow.css';
 const recruiterCommonStore = useRecruiterCommonStore()
 const profileStore = useProfileStore()
 
-const { jobPostingDropdowns: dropdowns, jobPostingFields: form, jobPosting } = storeToRefs(recruiterCommonStore)
+const { jobPostingDropdowns: dropdowns, jobPostingFields: form, jobPosting, isJobURLOrEmail } = storeToRefs(recruiterCommonStore)
 
 // modal
 const openModal = ref<any>(null)
@@ -605,6 +622,13 @@ function addNewRecord(prop: string) {
     }
 }
 
+const swicthJobURLOrEmail = () => {
+    isJobURLOrEmail.value = isJobURLOrEmail.value === 'url' ? 'email' : 'url'
+}
+watch(() => isJobURLOrEmail.value, () => {
+    if (isJobURLOrEmail.value == 'url') form.value.job_email = ''
+    else form.value.job_url = ''
+})
 
 
 

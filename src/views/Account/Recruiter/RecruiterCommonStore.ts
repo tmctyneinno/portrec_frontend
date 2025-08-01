@@ -46,6 +46,9 @@ export const useRecruiterCommonStore = defineStore('recruiterCommonStore', () =>
     // Interfaces END ##################################
 
 
+    const isJobURLOrEmail = ref<'url' | 'email'>('url')
+
+
     const jobApplication = reactive<jobApplicationInterface>({
         showing: 'list',
         currentIdShowing: '',
@@ -181,6 +184,7 @@ export const useRecruiterCommonStore = defineStore('recruiterCommonStore', () =>
         deadline: new Date(),
         location: '',
         job_url: '',
+        job_email: '',
 
         description: '',
         qualifications: null,
@@ -246,7 +250,12 @@ export const useRecruiterCommonStore = defineStore('recruiterCommonStore', () =>
         jobPostingFields.location = job.location;
 
         jobPostingFields.description = job.description;
+
+        if (job.job_url) isJobURLOrEmail.value = 'url'
+        if (job.job_email) isJobURLOrEmail.value = 'email'
+
         jobPostingFields.job_url = job.job_url;
+        jobPostingFields.job_email = job.job_email;
         jobPostingFields.qualifications = job.qualifications;
         jobPostingFields.experience = job.experience;
         jobPostingFields.other_qualifications = '';
@@ -286,6 +295,7 @@ export const useRecruiterCommonStore = defineStore('recruiterCommonStore', () =>
     return {
         jobApplication,
         jobPosting,
+        isJobURLOrEmail,
         loadJobPostingDropdowns,
         editJobOpening,
         resetJobPostingForm,

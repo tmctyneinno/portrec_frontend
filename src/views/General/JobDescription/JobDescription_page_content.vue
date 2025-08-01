@@ -49,10 +49,22 @@
                           Apply
                         </primaryButton>
                       </div>
-                      <span v-else-if="hasAppliedForThisJob" class="text-warning small ">Already Applied</span>
-                      <button v-else-if="currentJob.job_url" @click="visitExternalLink"
-                        class="btn btn-primary rounded- px-3">Visit link</button>
-                      <button v-else @click="openApplyModal" class="btn btn-primary rounded- px-3">Apply now</button>
+                      <span v-else>
+                        <span v-if="hasAppliedForThisJob" class="text-warning small ">Already Applied</span>
+                        <span v-else>
+                          <span v-if="currentJob.job_url || currentJob.job_email">
+                            <button v-if="currentJob.job_url" @click="visitExternalLink"
+                              class="btn btn-primary rounded- px-3">Visit link</button>
+                            <a v-if="currentJob.job_email"
+                              :href="`mailto:${currentJob.job_email}?subject=Application for Job`"
+                              class="btn btn-primary rounded- px-3">Send Email</a>
+                          </span>
+                          <button v-else @click="openApplyModal" class="btn btn-primary rounded- px-3">Apply
+                            now</button>
+                        </span>
+
+                      </span>
+
                     </div>
                   </div>
                 </div>

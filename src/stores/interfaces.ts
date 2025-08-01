@@ -22,6 +22,7 @@ export interface JobOpeningInterface {
     deadline: Date,
     location: string,
     job_url: string,
+    job_email: string,
 
     description: string,
     qualifications: null,
