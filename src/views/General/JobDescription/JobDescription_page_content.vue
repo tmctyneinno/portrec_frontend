@@ -57,10 +57,10 @@
                               class="btn btn-primary rounded- px-3">Visit link</button>
                             <a v-if="currentJob.job_email"
                               :href="`mailto:${currentJob.job_email}?subject=Application for Job`"
-                              class="btn btn-primary rounded- px-3">Send Email</a>
+                              class="btn btn-primary rounded- px-3">Apply now</a>
                           </span>
-                          <button v-else @click="openApplyModal" class="btn btn-primary rounded- px-3">Apply
-                            now</button>
+                          <button v-else @click="openApplyModal" class="btn btn-primary rounded- px-3">
+                            Apply now</button>
                         </span>
 
                       </span>
