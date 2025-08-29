@@ -58,9 +58,14 @@
                 {{ dateShow(currentJob?.created_at) }}
               </span>
             </li>
-            <li class="list-group-item border-0 px-0">Job Type
+            <li v-if="currentJob?.job_type" class="list-group-item border-0 px-0">Job Type
               <span class="float-end fw-bold text-capitalize">
-                {{ currentJob?.job_type?.name ?? '' }}
+                {{ currentJob?.job_type?.name ?? '-' }}
+              </span>
+            </li>
+            <li class="list-group-item border-0 px-0">Job Mode
+              <span class="float-end fw-bold text-capitalize">
+                {{ currentJob?.job_mode?.name ?? '' }}
               </span>
             </li>
             <li class="list-group-item border-0 px-0">

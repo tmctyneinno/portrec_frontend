@@ -30,8 +30,13 @@
                         {{ currentJob.company?.name ?? '' }}
                         {{ `${currentJob.company?.country ?? ''}` }}
                         <i class="bi bi-dot"></i>
-                        <i class="bi bi-briefcase ms-2"></i>
-                        {{ currentJob.job_type?.name ?? '' }}
+                        <span v-if="currentJob.job_type">
+                          <i class="bi bi-briefcase ms-2"></i>
+                          {{ currentJob.job_type?.name ?? '' }}
+                        </span>
+                        <span v-if="currentJob.job_mode">
+                          ({{ currentJob.job_mode?.name ?? '' }})
+                        </span>
                       </div>
                       <div class="xsmall fst-italic text-success-emphasis">
                         Posted <span class="fw-bolder">{{ useFunctions.timeAgo(currentJob.created_at) }}</span>

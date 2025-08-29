@@ -31,6 +31,9 @@
                         <span class="border-right">
                             <span class="category-tag fulltime-tag text-capitalize">
                                 {{ job.job_type?.name ?? 'Full Time' }}
+                                <span v-if="job.job_mode">
+                                    ( {{ job.job_mode?.name ?? '-' }})
+                                </span>
                             </span>
 
                         </span>
