@@ -30,6 +30,10 @@ export default {
         return $instancePublic.get(`job/types`)
     },
 
+    jobModes() {
+        return $instancePublic.get(`job/modes`)
+    },
+
     jobQualifications() {
         return $instancePublic.get(`job/qualifications`)
     },

@@ -15,6 +15,7 @@ export interface JobOpeningInterface {
     job_function_id: string | number,
     industry_id: string | number,
     job_type_id: string | number,
+    job_mode_id: string | number,
     title: string,
     required_skills: [],
     min_salary: string | number,

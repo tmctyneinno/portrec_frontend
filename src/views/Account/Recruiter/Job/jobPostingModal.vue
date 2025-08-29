@@ -81,6 +81,23 @@
                                 <hr>
                                 <div class="row g-3">
                                     <div class="col-md-5">
+                                        <strong>Job Mode <span class="text-danger">*</span></strong>
+                                        <div class="text-muted small">
+                                            Select mode of employment
+                                        </div>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <v-select :loading="!jobPosting.hasLoadedDropdowns" append-to-body
+                                            :calculate-position="useFxn.vueSelectPositionCalc" :teleport="true"
+                                            v-model="form.job_mode_id" class="text-capitalize job-chooser"
+                                            :clearable="false" :options="dropdowns.jobModes" :reduce="(x: any) => x.id"
+                                            label="name"></v-select>
+
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row g-3">
+                                    <div class="col-md-5">
                                         <strong>Industry <span class="text-danger">*</span></strong>
                                         <div class="text-muted small">
                                             Select industry
@@ -538,6 +555,9 @@
                         <primaryButtonLoading :btnText="'Posting'" />
                     </div>
                     <div class="modal-footer border-" v-else>
+                        <div v-if="stepIsComplete > 0" class="small text-danger">
+                            Complete all required fields to continue!
+                        </div>
                         <button ref="closeModal" type="button" class="btn btn-light " data-bs-dismiss="modal"
                             aria-label="Close">Cancel</button>
                         <button v-if="[2, 3].includes(jobPosting.stage)" @click="goToPrevious" type="button"
@@ -554,6 +574,7 @@
                         <primaryButton @click="submitJobPosting" v-if="jobPosting.stage == 3">
                             {{ jobPosting.editingId ? 'Update Job' : 'Post Job' }}
                         </primaryButton>
+
 
                     </div>
                 </div>
@@ -668,7 +689,7 @@ function goToPrevious() {
 
 const stepIsComplete = computed(() => {
     let bool = 0;
-    const step1 = ['job_level_id', 'job_function_id', 'industry_id', 'job_type_id', 'title', 'required_skills', 'deadline', 'location', 'capacity']
+    const step1 = ['job_level_id', 'job_function_id', 'industry_id', 'job_type_id', 'job_mode_id', 'title', 'required_skills', 'deadline', 'location', 'capacity']
     const step2 = ['description', 'experience']
     if (jobPosting.value.stage == 1) {
         step1.forEach(element => {
@@ -738,12 +759,13 @@ async function saveFormToApi(obj: any) {
             useFxn.toast('Job posted', 'success')
             jobPosting.value.jobListUpdated = !jobPosting.value.jobListUpdated
         }
+        jobPosting.value.modal = !jobPosting.value.modal
     } catch (error) {
         console.log(error);
         useFxn.toast('Sorry, Something Went Wrong', 'error')
     }
     finally {
-        jobPosting.value.modal = !jobPosting.value.modal
+
         form.value.isSaving = false;
     }
 
@@ -757,12 +779,12 @@ async function updateFormToApi(obj: any) {
             useFxn.toast('Job updated', 'success')
             jobPosting.value.jobListUpdated = !jobPosting.value.jobListUpdated
         }
+        jobPosting.value.modal = !jobPosting.value.modal
     } catch (error) {
         console.log(error);
         useFxn.toast('Sorry, Something Went Wrong', 'error')
     }
     finally {
-        jobPosting.value.modal = !jobPosting.value.modal
         form.value.isSaving = false;
     }
 

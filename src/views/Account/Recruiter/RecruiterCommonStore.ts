@@ -25,6 +25,7 @@ export const useRecruiterCommonStore = defineStore('recruiterCommonStore', () =>
         jobFunctions: any[],
         jobIndustries: any[],
         jobTypes: any[],
+        jobModes: any[],
         jobLevels: any[],
         skills: any[],
         currencies: any[],
@@ -79,6 +80,7 @@ export const useRecruiterCommonStore = defineStore('recruiterCommonStore', () =>
         jobFunctions: [],
         jobIndustries: [],
         jobTypes: [],
+        jobModes: [],
         jobLevels: [],
         skills: [],
         currencies: [],
@@ -99,10 +101,11 @@ export const useRecruiterCommonStore = defineStore('recruiterCommonStore', () =>
 
     async function loadJobPostingDropdowns() {
         try {
-            const [functions, levels, types, industries, skills, currencies] = await Promise.all([
+            const [functions, levels, types, modes, industries, skills, currencies] = await Promise.all([
                 api.jobFunctions(),
                 api.jobLevels(),
                 api.jobTypes(),
+                api.jobModes(),
                 api.jobCategories(),
                 api.skills(),
                 api.currencies(),
@@ -111,6 +114,7 @@ export const useRecruiterCommonStore = defineStore('recruiterCommonStore', () =>
             jobPostingDropdowns.jobFunctions = functions.data.body;
             jobPostingDropdowns.jobLevels = levels.data.body;
             jobPostingDropdowns.jobTypes = types.data.body;
+            jobPostingDropdowns.jobModes = modes.data.body;
             jobPostingDropdowns.jobIndustries = industries.data.body;
             jobPostingDropdowns.skills = skills.data.body;
             jobPostingDropdowns.currencies = currencies.data.body;
@@ -177,6 +181,7 @@ export const useRecruiterCommonStore = defineStore('recruiterCommonStore', () =>
         job_function_id: '',
         industry_id: '',
         job_type_id: '',
+        job_mode_id: '',
         title: '',
         required_skills: [],
         min_salary: '',
@@ -240,6 +245,7 @@ export const useRecruiterCommonStore = defineStore('recruiterCommonStore', () =>
         jobPostingFields.job_function_id = parseInt(job.job_function_id);
         jobPostingFields.industry_id = parseInt(job.industry_id);
         jobPostingFields.job_type_id = parseInt(job.job_type_id);
+        jobPostingFields.job_mode_id = parseInt(job.job_mode_id);
         jobPostingFields.title = job.title;
         jobPostingFields.required_skills = JSONrequired_skills;
         if (job.min_salary)
