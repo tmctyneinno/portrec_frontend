@@ -12,7 +12,7 @@
                     </div>
 
                     <div class="small-text text-white text-center mt-4">
-                        Great platform for the job seeker that is searching for new carreer heights and
+                        Great platform for the job seeker that is searching for new career heights and
                         passionate about startups.
                     </div>
                 </div>
