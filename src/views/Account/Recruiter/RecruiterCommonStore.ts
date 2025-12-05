@@ -132,7 +132,7 @@ export const useRecruiterCommonStore = defineStore('recruiterCommonStore', () =>
                 companyProfile.companyFound = false
             } else {
                 companyProfile.data = resp.data
-                companyProfile.avatar = resp.data?.avatar ?? 'https://via.placeholder.com/150'
+                companyProfile.avatar = resp.data?.avatar ?? 'https://dummyimage.com/150x150'
                 companyProfile.companyFound = true
             }
             companyProfile.isLoading = false
