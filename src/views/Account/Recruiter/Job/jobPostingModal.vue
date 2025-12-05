@@ -64,7 +64,7 @@
                                 <hr>
                                 <div class="row g-3">
                                     <div class="col-md-5">
-                                        <strong>Type of Employment <span class="text-danger">*</span></strong>
+                                        <strong>Employment Type <span class="text-danger">*</span></strong>
                                         <div class="text-muted small">
                                             Select type of employment
                                         </div>
@@ -81,7 +81,7 @@
                                 <hr>
                                 <div class="row g-3">
                                     <div class="col-md-5">
-                                        <strong>Job Mode <span class="text-danger">*</span></strong>
+                                        <strong>Work Mode <span class="text-danger">*</span></strong>
                                         <div class="text-muted small">
                                             Select mode of employment
                                         </div>
